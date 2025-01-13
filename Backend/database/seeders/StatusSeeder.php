@@ -9,14 +9,14 @@ class StatusSeeder extends Seeder
 {
     public function run()
     {
-        // Tambahkan atau perbarui data
+
         DB::table('status')->updateOrInsert(
-            ['id' => 0], // Kondisi pencarian
+            ['id' => 0],
             ['name' => 'SUCCESS', 'created_at' => now(), 'updated_at' => now()]
         );
 
         DB::table('status')->updateOrInsert(
-            ['id' => 1], // Kondisi pencarian
+            ['id' => 1],
             ['name' => 'FAILED', 'created_at' => now(), 'updated_at' => now()]
         );
     }

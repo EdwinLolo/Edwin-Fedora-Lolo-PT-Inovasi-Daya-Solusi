@@ -16,38 +16,68 @@ const TransactionTable = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Transaction Table</h2>
+    <div className="px-6 py-4">
+      <h2 className="mb-4 text-2xl font-bold">Transaction Table</h2>
       {Object.keys(transactions).map((group, index) => (
-        <div key={index}>
-          <h3>{group}</h3>
-          <table border="1" style={{ width: "100%", marginBottom: "20px" }}>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Product Name</th>
-                <th>Amount</th>
-                <th>Customer Name</th>
-                <th>Status</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {transactions[group].map((transaction) => (
-                <tr key={transaction.id}>
-                  <td>{transaction.id}</td>
-                  <td>{transaction.productName}</td>
-                  <td>{transaction.amount}</td>
-                  <td>{transaction.customerName}</td>
-                  <td>{transaction.status === 0 ? "SUCCESS" : "FAILED"}</td>
-                  <td>
-                    <a href={`/view/${transaction.id}`}>View</a> |
-                    <a href={`/edit/${transaction.id}`}>Edit</a>
-                  </td>
+        <div key={index} className="mb-8">
+          <div className="flex w-full mb-2 text-center">
+            <h3 className="w-full text-lg font-bold text-white rounded-md bg-slate-600">
+              {group}
+            </h3>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full border border-collapse border-gray-300">
+              <thead>
+                <tr className="bg-gray-200">
+                  <th className="px-4 py-2 border border-gray-300">
+                    Product Name
+                  </th>
+                  <th className="px-4 py-2 border border-gray-300">Amount</th>
+                  <th className="px-4 py-2 border border-gray-300">
+                    Customer Name
+                  </th>
+                  <th className="px-4 py-2 border border-gray-300">Status</th>
+                  <th className="px-4 py-2 border border-gray-300">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {transactions[group].map((transaction) => (
+                  <tr
+                    key={transaction.id}
+                    className="text-center odd:bg-white even:bg-gray-100"
+                  >
+                    <td className="px-4 py-2 border border-gray-300">
+                      {transaction.productName}
+                    </td>
+                    <td className="px-4 py-2 border border-gray-300">
+                      {transaction.amount}
+                    </td>
+                    <td className="px-4 py-2 border border-gray-300">
+                      {transaction.customerName}
+                    </td>
+                    <td className="px-4 py-2 border border-gray-300">
+                      {transaction.status === 0 ? "SUCCESS" : "FAILED"}
+                    </td>
+                    <td className="px-4 py-2 border border-gray-300">
+                      <a
+                        href={`/view/${transaction.id}`}
+                        className="text-blue-500 hover:underline"
+                      >
+                        View
+                      </a>{" "}
+                      |
+                      <a
+                        href={`/edit/${transaction.id}`}
+                        className="ml-2 text-blue-500 hover:underline"
+                      >
+                        Edit
+                      </a>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       ))}
     </div>
